@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Judul Tab Browser -->
+    <title>hafizhan.side | Portofolio Mahasiswa PPNS</title>
+    <!-- Favicon / Ikon Kecil Tab Browser Menjadi Huruf "h" Saja -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90' font-family='sans-serif' font-weight='bold' fill='%232563eb'&gt;h&lt;/text&gt;&lt;/svg&gt;">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Hubungkan ke File CSS Eksternal -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Konfigurasi Tema Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#2563eb',
+                            hoverBlue: '#1d4ed8',
+                            dark: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen relative selection:bg-brand-blue selection:text-white">
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 transition-all duration-300" id="main-nav">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex justify-between items-center">
+            <a href="#home" class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white group">
+                hafizhan<span class="text-brand-blue group-hover:text-blue-700 transition-colors duration-300">.side</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-white hover:scale-105 transform transition-all duration-200" data-section="home">Home</a>
+                <a href="#pengalaman" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-white hover:scale-105 transform transition-all duration-200" data-section="pengalaman">Pengalaman</a>
+                <a href="#akademis" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-white hover:scale-105 transform transition-all duration-200" data-section="akademis">Academis</a>
+                <a href="#about" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-white hover:scale-105 transform transition-all duration-200" data-section="about">About</a>
+                <a href="#contact" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-white hover:scale-105 transform transition-all duration-200" data-section="contact">Contact</a>
+                
+                <span class="w-px h-5 bg-slate-300 dark:bg-slate-700"></span>
+
+                <!-- Dark Mode Toggle Button -->
+                <button id="theme-toggle" class="text-slate-700 dark:text-slate-300 hover:text-brand-blue hover:rotate-12 transition-all duration-300 focus:outline-none p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" title="Ubah Tema">
+                    <i class="fas fa-moon text-lg dark:hidden"></i>
+                    <i class="fas fa-sun text-lg hidden dark:block text-amber-400"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Action Bar -->
+            <div class="md:hidden flex items-center space-x-4">
+                <button id="theme-toggle-mobile" class="text-slate-700 dark:text-slate-300 focus:outline-none p-1" title="Ubah Tema">
+                    <i class="fas fa-moon text-lg dark:hidden"></i>
+                    <i class="fas fa-sun text-lg hidden dark:block text-amber-400"></i>
+                </button>
+                <button id="mobile-menu-btn" class="text-slate-700 dark:text-slate-300 text-xl focus:outline-none p-1 active:scale-95 transition-transform">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-6 py-4 space-y-3 absolute w-full left-0 shadow-lg animate-fade-in">
+            <a href="#home" class="mobile-link block py-2 text-slate-700 dark:text-slate-300 hover:text-brand-blue font-medium transition-colors">Home</a>
+            <a href="#pengalaman" class="mobile-link block py-2 text-slate-700 dark:text-slate-300 hover:text-brand-blue font-medium transition-colors">Pengalaman</a>
+            <a href="#akademis" class="mobile-link block py-2 text-slate-700 dark:text-slate-300 hover:text-brand-blue font-medium transition-colors">Academis</a>
+            <a href="#about" class="mobile-link block py-2 text-slate-700 dark:text-slate-300 hover:text-brand-blue font-medium transition-colors">About</a>
+            <a href="#contact" class="mobile-link block py-2 text-slate-700 dark:text-slate-300 hover:text-brand-blue font-medium transition-colors">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Teks Kiri, Foto Kanan di Desktop) -->
+    <section id="home" class="pt-36 pb-20 min-h-screen flex items-center px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+            
+            <!-- Left Information Content -->
+            <div class="lg:col-span-7 space-y-6 text-left order-2 lg:order-1">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 dark:bg-blue-950/40 text-brand-blue border border-blue-100 dark:border-blue-900/50 rounded-full text-xs font-semibold hover:scale-105 transition-transform duration-300">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Mahasiswa Aktif — Semester 2 PPNS
+                </div>
+                
+                <h2 class="text-xl md:text-2xl font-semibold text-slate-400 dark:text-slate-500">Halo, saya</h2>
+                
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+                    Hafizhan <span class="text-brand-blue serif-italic font-normal">Rizqu</span> <br>
+                    <span class="text-brand-blue serif-italic font-normal">Ardan</span>
+                </h1>
+                
+                <!-- Ultra-smooth Sliding / Flip Text Animation Container -->
+                <div class="h-10 overflow-hidden relative flex items-center">
+                    <div id="sliding-title" class="transition-all duration-500 ease-out transform translate-y-0 opacity-100 text-lg md:text-2xl font-bold text-slate-800 dark:text-slate-300">
+                        Mahasiswa <span class="text-brand-blue ml-1.5">D4 Teknik Pengolahan Limbah</span>
+                    </div>
+                </div>
+                
+                <p class="text-slate-500 dark:text-slate-400 leading-relaxed max-w-xl text-justify text-sm sm:text-base">
+                    Mahasiswa D4 Teknik Pengolahan Limbah asal Nganjuk, lahir 15 April 2006. Berkomitmen menciptakan solusi pengolahan limbah yang efisien, berkelanjutan, dan berdampak positif bagi lingkungan masa depan.
+                </p>
+
+                <!-- Connected Real Social Links in Hero -->
+                <div class="flex flex-wrap items-center gap-4 pt-4">
+                    <a href="https://www.instagram.com/hafizhardnn?igsh=MXU5ZndpMWtzc3BpOA==" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-500 hover:border-pink-600 hover:scale-110 transform transition-all shadow-sm" title="Instagram">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/hafizhan-rizqu-a-a71057379?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-500 hover:border-blue-600 hover:scale-110 transform transition-all shadow-sm" title="LinkedIn">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                    <a href="https://wa.me/qr/5KKGOBX3XGZXM1" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-green-500 dark:hover:text-green-400 hover:border-green-500 hover:scale-110 transform transition-all shadow-sm" title="WhatsApp">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-4 pt-4">
+                    <a href="#pengalaman" class="px-6 py-3.5 bg-brand-blue hover:bg-blue-700 text-white rounded-xl font-semibold transition-all shadow-lg hover:shadow-blue-500/30 text-sm hover:-translate-y-1 transform active:scale-95 duration-200">Lihat Pengalaman</a>
+                    <a href="#contact" class="px-6 py-3.5 border border-slate-300 dark:border-slate-700 hover:border-brand-blue dark:hover:border-brand-blue rounded-xl font-semibold transition-all text-sm flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-brand-blue hover:-translate-y-1 transform duration-200">
+                        Kirim Email <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Right Side Photo Frame -->
+            <div class="lg:col-span-5 flex justify-center relative order-1 lg:order-2">
+                <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 flex items-center justify-center">
+                    <div class="absolute inset-0 border border-slate-200 dark:border-slate-800 rounded-full scale-105 pointer-events-none"></div>
+                    <div class="absolute inset-0 border border-slate-200 dark:border-slate-800 rounded-full scale-110 opacity-50 pointer-events-none"></div>
+                    
+                    <div class="absolute inset-4 bg-red-600 rounded-full overflow-hidden border-4 border-white dark:border-slate-900 shadow-2xl flex items-end justify-center group cursor-pointer">
+                        <img src="pas%20foto%20mbois.png" alt="Hafizhan Rizqu Ardan" class="w-full h-full object-cover origin-bottom scale-105 group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://via.placeholder.com/600x600?text=pas+foto+mbois'">
+                    </div>
+
+                    <!-- Float Info Badges -->
+                    <div class="absolute top-12 left-0 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-3 rounded-2xl shadow-xl flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-default animate-bounce" style="animation-duration: 4s;">
+                        <div class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-900/50 text-brand-blue flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-sm"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-800 dark:text-slate-200">Semester 2/8</p>
+                            <p class="text-[10px] text-slate-400 font-medium">Teknik PL PPNS</p>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-12 right-0 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-3 rounded-2xl shadow-xl flex items-center gap-3 hover:scale-105 transition-transform duration-300 cursor-default animate-bounce" style="animation-duration: 5s;">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-900/50 text-emerald-500 flex items-center justify-center">
+                            <i class="fas fa-chart-line text-sm"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-800 dark:text-slate-200">Pengalaman</p>
+                            <p class="text-[10px] text-slate-400 font-medium">yang diikuti</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: PENGALAMAN -->
+    <section id="pengalaman" class="py-24 bg-white dark:bg-slate-900 border-y border-slate-200/50 dark:border-slate-800/50 px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center space-y-4 mb-16">
+                <span class="px-3 py-1 bg-blue-50 dark:bg-blue-950/40 text-brand-blue border border-blue-100 dark:border-blue-900/50 rounded-full text-xs font-semibold">Portofolio Kegiatan</span>
+                <h2 class="text-4xl font-bold text-slate-900 dark:text-white">Pengalaman</h2>
+                <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
+                    Rekam jejak pengalaman organisasi, kepanitiaan, program pelatihan, dan keterlibatan UKM pada masa perkuliahan.
+                </p>
+                
+                <!-- Filter Kategori Interaktif -->
+                <div class="flex flex-wrap justify-center gap-2 pt-4" id="experience-filters">
+                    <button class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-blue text-white transition-all active:scale-95 duration-200 shadow-md" data-filter="all">Semua</button>
+                    <button class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 active:scale-95 duration-200 transition-all" data-filter="organisasi">Organisasi</button>
+                    <button class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 active:scale-95 duration-200 transition-all" data-filter="pelatihan">Pelatihan</button>
+                    <button class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 active:scale-95 duration-200 transition-all" data-filter="ukm">UKM</button>
+                </div>
+            </div>
+
+            <!-- Grid Gabungan dengan Slot Foto (3 Sliding Images Auto-slide) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="experience-grid">
+                
+                <!-- Card 1: Lembaga Minat Bakat PPNS -->
+                <div class="exp-card bg-slate-50 dark:bg-slate-950 rounded-3xl overflow-hidden border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-2 transform transition-all duration-300 group" data-category="organisasi">
+                    <!-- Carousel 3 Foto Sliding -->
+                    <div class="relative overflow-hidden h-48 bg-slate-200 carousel">
+                        <div class="carousel-inner flex w-full h-full transition-transform duration-500 ease-in-out">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Lembaga Minat Bakat PPNS 1">
+                            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Lembaga Minat Bakat PPNS 2">
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Lembaga Minat Bakat PPNS 3">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent pointer-events-none"></div>
+                        <span class="absolute top-4 left-4 px-2.5 py-1 bg-brand-blue text-white rounded-lg text-[10px] font-bold uppercase tracking-wider">Organisasi</span>
+                        <p class="absolute bottom-4 left-4 text-xs text-slate-200 font-medium"><i class="far fa-calendar-alt mr-1"></i> 2025</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-brand-blue transition-colors">Lembaga Minat Bakat PPNS</h3>
+                            <p class="text-xs text-brand-blue font-semibold">Staff Magang Departemen Dalam Negeri</p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-justify line-clamp-3">Pernah aktif sebagai Staff Magang di Lembaga Minat Bakat PPNS di Departemen Dalam Negeri untuk berkontribusi dalam menyelaraskan minat bakat kemahasiswaan.</p>
+                        </div>
+                        <button class="w-full py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-brand-blue hover:text-white dark:hover:bg-brand-blue hover:border-brand-blue dark:hover:border-brand-blue text-brand-blue dark:text-blue-400 rounded-xl text-xs font-bold mt-6 transition-all duration-200 active:scale-[0.98] btn-detail" 
+                            data-title="Lembaga Minat Bakat PPNS" 
+                            data-type="Organisasi" 
+                            data-image="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=600"
+                            data-desc="Pernah aktif sebagai Staff Magang di Lembaga Minat Bakat PPNS di Departemen Dalam Negeri untuk berkontribusi dalam menyelaraskan minat bakat kemahasiswaan secara dinamis dan adaptif.">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: HIMATEKPL PPNS -->
+                <div class="exp-card bg-slate-50 dark:bg-slate-950 rounded-3xl overflow-hidden border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-2 transform transition-all duration-300 group" data-category="organisasi">
+                    <!-- Carousel 3 Foto Sliding -->
+                    <div class="relative overflow-hidden h-48 bg-slate-200 carousel">
+                        <div class="carousel-inner flex w-full h-full transition-transform duration-500 ease-in-out">
+                            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="HIMATEKPL PPNS 1">
+                            <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="HIMATEKPL PPNS 2">
+                            <img src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="HIMATEKPL PPNS 3">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent pointer-events-none"></div>
+                        <span class="absolute top-4 left-4 px-2.5 py-1 bg-emerald-500 text-white rounded-lg text-[10px] font-bold uppercase tracking-wider">Organisasi</span>
+                        <p class="absolute bottom-4 left-4 text-xs text-slate-200 font-medium"><i class="far fa-calendar-alt mr-1"></i> 2025 - Sekarang</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-emerald-500 transition-colors">HIMATEKPL PPNS</h3>
+                            <p class="text-xs text-emerald-500 font-semibold">Staff Departemen Minat Bakat</p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-justify line-clamp-3">Bergabung sebagai Staff di Departemen Minat Bakat HIMATEKPL PPNS, memegang proker Green Cup serta mengelola agenda biliar dan catur untuk menyalurkan bakat olahraga mahasiswa.</p>
+                        </div>
+                        <button class="w-full py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-emerald-500 hover:text-white dark:hover:bg-emerald-500 hover:border-emerald-500 dark:hover:border-emerald-500 text-emerald-600 dark:text-emerald-400 rounded-xl text-xs font-bold mt-6 transition-all duration-200 active:scale-[0.98] btn-detail" 
+                            data-title="HIMATEKPL PPNS" 
+                            data-type="Organisasi" 
+                            data-image="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=600"
+                            data-desc="Bergabung sebagai Staff di Departemen Minat Bakat HIMATEKPL PPNS, memegang proker Green Cup serta mengelola agenda biliar dan catur untuk menyalurkan bakat olahraga mahasiswa.">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Panitia Expo Campus SMAN 1 Nganjuk -->
+                <div class="exp-card bg-slate-50 dark:bg-slate-950 rounded-3xl overflow-hidden border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-2 transform transition-all duration-300 group" data-category="organisasi">
+                    <!-- Carousel 3 Foto Sliding -->
+                    <div class="relative overflow-hidden h-48 bg-slate-200 carousel">
+                        <div class="carousel-inner flex w-full h-full transition-transform duration-500 ease-in-out">
+                            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Expo Campus SMAN 1 Nganjuk 1">
+                            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Expo Campus SMAN 1 Nganjuk 2">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Expo Campus SMAN 1 Nganjuk 3">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent pointer-events-none"></div>
+                        <span class="absolute top-4 left-4 px-2.5 py-1 bg-blue-500 text-white rounded-lg text-[10px] font-bold uppercase tracking-wider">Kepanitiaan</span>
+                        <p class="absolute bottom-4 left-4 text-xs text-slate-200 font-medium"><i class="far fa-calendar-alt mr-1"></i> 2026</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors">Expo Campus SMAN 1 Nganjuk</h3>
+                            <p class="text-xs text-blue-500 font-semibold">Staff Panitia Pelaksana</p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-justify line-clamp-3">Menjadi bagian dari kepanitiaan Expo Campus di SMA Negeri 1 Nganjuk pada tahun 2026, memfasilitasi informasi jalur masuk perguruan tinggi bagi adik kelas.</p>
+                        </div>
+                        <button class="w-full py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-500 hover:border-blue-500 dark:hover:border-blue-500 text-blue-600 dark:text-blue-400 rounded-xl text-xs font-bold mt-6 transition-all duration-200 active:scale-[0.98] btn-detail" 
+                            data-title="Expo Campus SMAN 1 Nganjuk" 
+                            data-type="Organisasi" 
+                            data-image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=600"
+                            data-desc="Menjadi bagian dari kepanitiaan Expo Campus di SMA Negeri 1 Nganjuk pada tahun 2026, memfasilitasi informasi jalur masuk perguruan tinggi, sosialisasi kehidupan kampus, serta mengoordinasi jalannya event pameran edukasi.">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 4: Figma - Nahkoda Kreasi -->
+                <div class="exp-card bg-slate-50 dark:bg-slate-950 rounded-3xl overflow-hidden border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-2 transform transition-all duration-300 group" data-category="pelatihan">
+                    <!-- Carousel 3 Foto Sliding -->
+                    <div class="relative overflow-hidden h-48 bg-slate-200 carousel">
+                        <div class="carousel-inner flex w-full h-full transition-transform duration-500 ease-in-out">
+                            <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Pelatihan Figma 1">
+                            <img src="https://images.unsplash.com/photo-1581291518655-9523c932dedf?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Pelatihan Figma 2">
+                            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Pelatihan Figma 3">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent pointer-events-none"></div>
+                        <span class="absolute top-4 left-4 px-2.5 py-1 bg-purple-500 text-white rounded-lg text-[10px] font-bold uppercase tracking-wider">Pelatihan</span>
+                        <p class="absolute bottom-4 left-4 text-xs text-slate-200 font-medium"><i class="far fa-calendar-alt mr-1"></i> 2025</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-purple-500 transition-colors">Pelatihan Figma — Nahkoda Kreasi</h3>
+                            <p class="text-xs text-purple-500 font-semibold">UI/UX Design Basic</p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-justify line-clamp-3">Mengikuti pelatihan Figma dasar yang mencakup pembuatan maskot, penggunaan fitur-fitur dasar Figma, serta teknik connection animasi.</p>
+                        </div>
+                        <button class="w-full py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-purple-500 hover:text-white dark:hover:bg-purple-500 hover:border-purple-500 dark:hover:border-purple-500 text-purple-600 dark:text-purple-400 rounded-xl text-xs font-bold mt-6 transition-all duration-200 active:scale-[0.98] btn-detail" 
+                            data-title="Pelatihan Figma — Nahkoda Kreasi" 
+                            data-type="Pelatihan" 
+                            data-image="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600"
+                            data-desc="Mengikuti pelatihan Figma dasar yang mencakup pembuatan maskot, penggunaan fitur-fitur dasar Figma, serta teknik connection animasi.">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 5: AutoCAD -->
+                <div class="exp-card bg-slate-50 dark:bg-slate-950 rounded-3xl overflow-hidden border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-2 transform transition-all duration-300 group" data-category="pelatihan">
+                    <!-- Carousel 3 Foto Sliding -->
+                    <div class="relative overflow-hidden h-48 bg-slate-200 carousel">
+                        <div class="carousel-inner flex w-full h-full transition-transform duration-500 ease-in-out">
+                            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Pelatihan AutoCAD 1">
+                            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Pelatihan AutoCAD 2">
+                            <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Pelatihan AutoCAD 3">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent pointer-events-none"></div>
+                        <span class="absolute top-4 left-4 px-2.5 py-1 bg-orange-500 text-white rounded-lg text-[10px] font-bold uppercase tracking-wider">Pelatihan</span>
+                        <p class="absolute bottom-4 left-4 text-xs text-slate-200 font-medium"><i class="far fa-calendar-alt mr-1"></i> 2025</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-orange-500 transition-colors">Pelatihan AutoCAD</h3>
+                            <p class="text-xs text-orange-500 font-semibold">2D Drawing & Engineering Design</p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-justify line-clamp-3">Mengikuti pelatihan AutoCAD dari HIMATEKPL PPNS untuk menunjang pembelajaran pada mata kuliah Gambar Teknik, memperkenalkan dasar-dasar perancangan teknik sederhana.</p>
+                        </div>
+                        <button class="w-full py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-orange-500 hover:text-white dark:hover:bg-orange-500 hover:border-orange-500 dark:hover:border-orange-500 text-orange-600 dark:text-orange-400 rounded-xl text-xs font-bold mt-6 transition-all duration-200 active:scale-[0.98] btn-detail" 
+                            data-title="Pelatihan AutoCAD" 
+                            data-type="Pelatihan" 
+                            data-image="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=600"
+                            data-desc="Mengikuti pelatihan AutoCAD dari HIMATEKPL PPNS untuk menunjang pembelajaran pada mata kuliah Gambar Teknik, memperkenalkan dasar-dasar perancangan teknik sederhana.">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 6: Pelatihan LKMM Pra-TD -->
+                <div class="exp-card bg-slate-50 dark:bg-slate-950 rounded-3xl overflow-hidden border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-2 transform transition-all duration-300 group" data-category="pelatihan">
+                    <!-- Carousel 3 Foto Sliding -->
+                    <div class="relative overflow-hidden h-48 bg-slate-200 carousel">
+                        <div class="carousel-inner flex w-full h-full transition-transform duration-500 ease-in-out">
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Pelatihan LKMM Pra-TD 1">
+                            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Pelatihan LKMM Pra-TD 2">
+                            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Pelatihan LKMM Pra-TD 3">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent pointer-events-none"></div>
+                        <span class="absolute top-4 left-4 px-2.5 py-1 bg-purple-500 text-white rounded-lg text-[10px] font-bold uppercase tracking-wider">Pelatihan</span>
+                        <p class="absolute bottom-4 left-4 text-xs text-slate-200 font-medium"><i class="far fa-calendar-alt mr-1"></i> 2025</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-purple-500 transition-colors">Pelatihan LKMM Pra-TD</h3>
+                            <p class="text-xs text-purple-500 font-semibold">Latihan Kepemimpinan Mahasiswa</p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-justify line-clamp-3">Mengikuti Latihan Keterampilan Manajemen Mahasiswa Pra-Tingkat Dasar (LKMM Pra-TD) tahun 2025 untuk mengasah pondasi manajemen dan kepemimpinan organisasi.</p>
+                        </div>
+                        <button class="w-full py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-purple-500 hover:text-white dark:hover:bg-purple-500 hover:border-purple-500 dark:hover:border-purple-500 text-purple-600 dark:text-purple-400 rounded-xl text-xs font-bold mt-6 transition-all duration-200 active:scale-[0.98] btn-detail" 
+                            data-title="Pelatihan LKMM Pra-TD" 
+                            data-type="Pelatihan" 
+                            data-image="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=600"
+                            data-desc="Mengikuti Latihan Keterampilan Manajemen Mahasiswa Pra-Tingkat Dasar (LKMM Pra-TD) tahun 2025 untuk mengasah pondasi manajemen organisasi, komunikasi efektif, dan kepemimpinan di lingkup mahasiswa.">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 7: UKM Ships TV -->
+                <div class="exp-card bg-slate-50 dark:bg-slate-950 rounded-3xl overflow-hidden border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-2 transform transition-all duration-300 group" data-category="ukm">
+                    <!-- Carousel 3 Foto Sliding -->
+                    <div class="relative overflow-hidden h-48 bg-slate-200 carousel">
+                        <div class="carousel-inner flex w-full h-full transition-transform duration-500 ease-in-out">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="UKM Ships TV 1">
+                            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="UKM Ships TV 2">
+                            <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="UKM Ships TV 3">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent pointer-events-none"></div>
+                        <span class="absolute top-4 left-4 px-2.5 py-1 bg-teal-500 text-white rounded-lg text-[10px] font-bold uppercase tracking-wider">UKM</span>
+                        <p class="absolute bottom-4 left-4 text-xs text-slate-200 font-medium"><i class="far fa-calendar-alt mr-1"></i> 2025</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-teal-500 transition-colors">UKM Ships TV PPNS</h3>
+                            <p class="text-xs text-teal-500 font-semibold">Multimedia Broadcasting</p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-justify line-clamp-3">Pernah bergabung di Ships TV PPNS, berkontribusi dalam produksi konten media kampus dan pengembangan kreativitas di bidang penyiaran.</p>
+                        </div>
+                        <button class="w-full py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-teal-500 hover:text-white dark:hover:bg-teal-500 hover:border-teal-500 dark:hover:border-teal-500 text-teal-600 dark:text-teal-400 rounded-xl text-xs font-bold mt-6 transition-all duration-200 active:scale-[0.98] btn-detail" 
+                            data-title="UKM Ships TV PPNS" 
+                            data-type="UKM" 
+                            data-image="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=600"
+                            data-desc="Pernah bergabung di Ships TV PPNS, berkontribusi dalam memproduksi dan menyebarluaskan konten media siar kampus yang kreatif serta informatif.">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 8: LKMM-TD -->
+                <div class="exp-card bg-slate-50 dark:bg-slate-950 rounded-3xl overflow-hidden border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-2 transform transition-all duration-300 group" data-category="pelatihan">
+                    <!-- Carousel 3 Foto Sliding -->
+                    <div class="relative overflow-hidden h-48 bg-slate-200 carousel">
+                        <div class="carousel-inner flex w-full h-full transition-transform duration-500 ease-in-out">
+                            <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="LKMM-TD 1">
+                            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="LKMM-TD 2">
+                            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="LKMM-TD 3">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent pointer-events-none"></div>
+                        <span class="absolute top-4 left-4 px-2.5 py-1 bg-pink-500 text-white rounded-lg text-[10px] font-bold uppercase tracking-wider">Pelatihan</span>
+                        <p class="absolute bottom-4 left-4 text-xs text-slate-200 font-medium"><i class="far fa-calendar-alt mr-1"></i> 2026</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-pink-500 transition-colors">LKMM-TD</h3>
+                            <p class="text-xs text-pink-500 font-semibold">Leadership & Management</p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-justify line-clamp-3">Mengikuti Latihan Keterampilan Manajemen Mahasiswa Tingkat Dasar (LKMM-TD), sebuah pelatihan kepemimpinan dan manajemen organisasi yang komprehensif.</p>
+                        </div>
+                        <button class="w-full py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-pink-500 hover:text-white dark:hover:bg-pink-500 hover:border-pink-500 dark:hover:border-pink-500 text-pink-600 dark:text-pink-400 rounded-xl text-xs font-bold mt-6 transition-all duration-200 active:scale-[0.98] btn-detail" 
+                            data-title="LKMM-TD" 
+                            data-type="Pelatihan" 
+                            data-image="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=600"
+                            data-desc="Mengikuti Latihan Keterampilan Manajemen Mahasiswa Tingkat Dasar (LKMM-TD), sebuah pelatihan kepemimpinan dan manajemen organisasi yang komprehensif.">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: PERJALANAN AKADEMIS -->
+    <section id="akademis" class="py-24 bg-slate-50 dark:bg-slate-950 px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center space-y-4 mb-16">
+                <span class="px-3 py-1 bg-blue-50 dark:bg-blue-950/40 text-brand-blue border border-blue-100 dark:border-blue-900/50 rounded-full text-xs font-semibold">Riwayat Pendidikan</span>
+                <h2 class="text-4xl font-bold text-slate-900 dark:text-white">Perjalanan <span class="text-brand-blue serif-italic font-normal">Akademis</span></h2>
+                <p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-sm sm:text-base">
+                    Dokumentasi jalur akademik saya dari jenjang pendidikan menengah pertama, menengah atas, hingga studi tinggi vokasi D4 Teknik Pengolahan Limbah.
+                </p>
+            </div>
+
+            <!-- Grid Kartu Akademis Interaktif -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Card 1: D4 Teknik Pengolahan Limbah -->
+                <div class="exp-card bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-2 transform transition-all duration-300 group">
+                    <!-- Carousel 3 Foto Sliding -->
+                    <div class="relative overflow-hidden h-48 bg-slate-200 carousel">
+                        <div class="carousel-inner flex w-full h-full transition-transform duration-500 ease-in-out">
+                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="D4 Teknik Pengolahan Limbah 1">
+                            <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="D4 Teknik Pengolahan Limbah 2">
+                            <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="D4 Teknik Pengolahan Limbah 3">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent pointer-events-none"></div>
+                        <span class="absolute top-4 left-4 px-2.5 py-1 bg-brand-blue text-white rounded-lg text-[10px] font-bold uppercase tracking-wider">Perguruan Tinggi</span>
+                        <p class="absolute bottom-4 left-4 text-xs text-slate-200 font-medium"><i class="far fa-calendar-alt mr-1"></i> 2025 - Sekarang</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-brand-blue transition-colors">D4 Teknik Pengolahan Limbah</h3>
+                            <p class="text-xs text-brand-blue font-semibold">Politeknik Perkapalan Negeri Surabaya (PPNS)</p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-justify line-clamp-3">Sedang aktif menempuh perkuliahan semester 2. Memfokuskan diri untuk mempelajari ilmu teknik pengolahan limbah, desain rekayasa sistem pengolahan limbah industri, serta pengembangan kompetensi kemahasiswaan.</p>
+                        </div>
+                        <button class="w-full py-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200/60 dark:border-slate-800/60 hover:bg-brand-blue hover:text-white dark:hover:bg-brand-blue hover:border-brand-blue dark:hover:border-brand-blue text-brand-blue dark:text-blue-400 rounded-xl text-xs font-bold mt-6 transition-all duration-200 active:scale-[0.98] btn-detail" 
+                            data-title="D4 Teknik Pengolahan Limbah - PPNS" 
+                            data-type="Perguruan Tinggi" 
+                            data-image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=600"
+                            data-desc="Sedang aktif menempuh perkuliahan semester 2. Memfokuskan diri untuk mempelajari ilmu teknik pengolahan limbah, desain rekayasa sistem pengolahan limbah industri, serta pengembangan kompetensi kemahasiswaan.">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Pendidikan Menengah Atas -->
+                <div class="exp-card bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-2 transform transition-all duration-300 group">
+                    <!-- Carousel 3 Foto Sliding -->
+                    <div class="relative overflow-hidden h-48 bg-slate-200 carousel">
+                        <div class="carousel-inner flex w-full h-full transition-transform duration-500 ease-in-out">
+                            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Pendidikan Menengah Atas 1">
+                            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Pendidikan Menengah Atas 2">
+                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover flex-shrink-0" alt="Pendidikan Menengah Atas 3">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent pointer-events-none"></div>
+                        <span class="absolute top-4 left-4 px-2.5 py-1 bg-purple-600 text-white rounded-lg text-[10px] font-bold uppercase tracking-wider">Sekolah Menengah Atas</span>
+                        <p class="absolute bottom-4 left-4 text-xs text-slate-200 font-medium"><i class="far fa-calendar-alt mr-1"></i> 2022 - 2025</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors">Pendidikan Menengah Atas</h3>
+                            <p class="text-xs text-purple-600 font-semibold">SMA Negeri 1 Nganjuk</p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-justify line-clamp-3">Menyelesaikan masa sekolah menengah atas dengan aktif berpartisipasi dalam beberapa organisasi kesiswaan serta kepanitiaan internal sekolah. Pengalaman ini melatih soft skill dalam manajemen waktu, komunikasi tim, dan kepemimpinan dasar.</p>
+                        </div>
+                        <button class="w-full py-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200/60 dark:border-slate-800/60 hover:bg-purple-600 hover:text-white dark:hover:bg-purple-600 hover:border-purple-600 dark:hover:border-purple-600 text-purple-600 dark:text-purple-400 rounded-xl text-xs font-bold mt-6 transition-all duration-200 active:scale-[0.98] btn-detail" 
+                            data-title="Pendidikan Menengah Atas - SMAN 1 Nganjuk" 
+                            data-type="Sekolah Menengah Atas" 
+                            data-image="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=600"
+                            data-desc="Menyelesaikan masa sekolah menengah atas dengan aktif berpartisipasi dalam beberapa organisasi kesiswaan serta kepanitiaan internal sekolah. Pengalaman ini melatih soft skill dalam manajemen waktu, komunikasi tim, dan kepemimpinan dasar.">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Pendidikan Menengah Pertama -->
+                <div class="exp-card bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-2 transform transition-all duration-300 group">
+                    <div class="relative overflow-hidden h-48 bg-gradient-to-tr from-brand-blue/30 via-slate-100 to-slate-200 dark:from-slate-900 dark:via-slate-800 dark:to-slate-950 flex items-center justify-center">
+                        <div class="w-20 h-20 rounded-full bg-white dark:bg-slate-900 shadow-md flex items-center justify-center text-brand-blue hover:rotate-12 transition-transform duration-300">
+                            <i class="fas fa-school text-3xl"></i>
+                        </div>
+                        <span class="absolute top-4 left-4 px-2.5 py-1 bg-amber-500 text-white rounded-lg text-[10px] font-bold uppercase tracking-wider">Sekolah Menengah Pertama</span>
+                        <p class="absolute bottom-4 left-4 text-xs text-slate-500 dark:text-slate-400 font-medium"><i class="far fa-calendar-alt mr-1"></i> 2019 - 2022</p>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-amber-500 transition-colors">Pendidikan Menengah Pertama</h3>
+                            <p class="text-xs text-amber-500 font-semibold">SMP Negeri 1 Nganjuk</p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-justify line-clamp-3">Hanya menyelesaikan jenjang pendidikan menengah pertama dengan baik di SMP Negeri 1 Nganjuk.</p>
+                        </div>
+                        <button class="w-full py-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200/60 dark:border-slate-800/60 hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 hover:border-amber-500 dark:hover:border-amber-500 text-amber-600 dark:text-amber-400 rounded-xl text-xs font-bold mt-6 transition-all duration-200 active:scale-[0.98] btn-detail" 
+                            data-title="Pendidikan Menengah Pertama - SMPN 1 Nganjuk" 
+                            data-type="Sekolah Menengah Pertama" 
+                            data-image="https://cdn-icons-png.flaticon.com/512/1048/1048953.png"
+                            data-desc="Hanya menyelesaikan jenjang pendidikan menengah pertama dengan baik di SMP Negeri 1 Nganjuk.">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: ABOUT SECTION (Menggunakan Foto Asli yang Anda Unggah) -->
+    <section id="about" class="py-24 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            <!-- Left Side Frame Profil -->
+            <div class="lg:col-span-4 space-y-6">
+                <!-- Main Profil Card -->
+                <div class="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60 rounded-[32px] p-4 shadow-md flex flex-col group transition-all duration-300 hover:shadow-xl hover:-translate-y-1 transform">
+                    <div class="bg-red-600 aspect-square rounded-[24px] overflow-hidden relative">
+                        <img src="pas%20foto%20mbois.png" alt="Hafizhan Rizqu Ardan" class="w-full h-full object-cover origin-bottom transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://via.placeholder.com/600x600?text=pas+foto+mbois'">
+                    </div>
+                    <div class="pt-5 pb-2 px-2">
+                        <h4 class="text-2xl font-bold text-slate-900 dark:text-white">Hafizhan Rizqu Ardan</h4>
+                        <p class="text-sm font-semibold text-brand-blue dark:text-blue-400 mt-1">Mahasiswa Semester 2</p>
+                    </div>
+                </div>
+
+                <!-- Fast Info Badges -->
+                <div class="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60 rounded-[32px] p-6 space-y-4 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950 flex items-center justify-center text-brand-blue flex-shrink-0"><i class="fas fa-university text-sm"></i></div>
+                        <div>
+                            <p class="text-[11px] text-slate-400">Institusi</p>
+                            <p class="text-sm font-bold text-slate-800 dark:text-slate-200 leading-tight">Politeknik Perkapalan Negeri Surabaya</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950 flex items-center justify-center text-brand-blue flex-shrink-0"><i class="fas fa-graduation-cap text-sm"></i></div>
+                        <div>
+                            <p class="text-[11px] text-slate-400">Jurusan</p>
+                            <p class="text-sm font-bold text-slate-800 dark:text-slate-200">D4 Teknik Pengolahan Limbah</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950 flex items-center justify-center text-brand-blue flex-shrink-0"><i class="fas fa-book-open text-sm"></i></div>
+                        <div>
+                            <p class="text-[11px] text-slate-400">Semester</p>
+                            <p class="text-sm font-bold text-slate-800 dark:text-slate-200">2 (Dua)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950 flex items-center justify-center text-brand-blue flex-shrink-0"><i class="fas fa-map-marker-alt text-sm"></i></div>
+                        <div>
+                            <p class="text-[11px] text-slate-400">Asal</p>
+                            <p class="text-sm font-bold text-slate-800 dark:text-slate-200">Nganjuk, Jawa Timur</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950 flex items-center justify-center text-emerald-500 flex-shrink-0"><i class="far fa-calendar-check text-sm"></i></div>
+                        <div>
+                            <p class="text-[11px] text-slate-400">Status</p>
+                            <p class="text-sm font-bold text-emerald-500">Mahasiswa Aktif</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side Skills Panel -->
+            <div class="lg:col-span-8 space-y-8">
+                <div class="space-y-4 animate-fade-in">
+                    <span class="px-3 py-1 bg-blue-50 dark:bg-blue-950/40 text-brand-blue border border-blue-100 dark:border-blue-900/50 rounded-full text-xs font-semibold">Tentang Saya</span>
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Belajar, Berkembang, dan <span class="text-brand-blue serif-italic font-normal">Berdampak</span></h2>
+                    <div class="text-sm sm:text-base text-slate-500 dark:text-slate-400 space-y-4 text-justify leading-relaxed">
+                        <p>Perkenalkan, saya Hafizhan Rizqu Ardan, mahasiswa program studi D4 Teknik Pengolahan Limbah semester 2 di Politeknik Perkapalan Negeri Surabaya (PPNS), asal Nganjuk, Jawa Timur. Saya berfokus untuk terus mengasah keilmuan akademis serta mengintegrasikannya dengan kemampuan manajerial organisasi.</p>
+                        <p>Sebagai pembelajar yang masih berada di tahap awal di dunia pengolahan limbah, saya memiliki komitmen kuat untuk mempelajari ilmu teknik pengolahan limbah, desain rekayasa sistem pengolahan limbah industri, serta pengembangan portofolio kegiatan kemahasiswaan demi meraih prospek karir yang gemilang dan memberikan kontribusi nyata bagi kelestarian masyarakat luas di masa depan.</p>
+                    </div>
+                </div>
+
+                <!-- Skill Meter Progress Bars -->
+                <div class="space-y-4" id="skills-container">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Keahlian & Kemampuan</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                        <!-- Skill 1 -->
+                        <div class="space-y-1.5 hover:scale-[1.01] transition-transform duration-200">
+                            <div class="flex justify-between text-xs sm:text-sm font-medium">
+                                <span class="text-slate-700 dark:text-slate-300">Microsoft Word</span>
+                                <span class="text-slate-400">85%</span>
+                            </div>
+                            <div class="h-2.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full bg-brand-blue transition-all duration-1000 w-0" data-target="85%"></div>
+                            </div>
+                        </div>
+                        <!-- Skill 2 -->
+                        <div class="space-y-1.5 hover:scale-[1.01] transition-transform duration-200">
+                            <div class="flex justify-between text-xs sm:text-sm font-medium">
+                                <span class="text-slate-700 dark:text-slate-300">Canva</span>
+                                <span class="text-slate-400">80%</span>
+                            </div>
+                            <div class="h-2.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full bg-brand-blue transition-all duration-1000 w-0" data-target="80%"></div>
+                            </div>
+                        </div>
+                        <!-- Skill 3 -->
+                        <div class="space-y-1.5 hover:scale-[1.01] transition-transform duration-200">
+                            <div class="flex justify-between text-xs sm:text-sm font-medium">
+                                <span class="text-slate-700 dark:text-slate-300">Microsoft Excel</span>
+                                <span class="text-slate-400">75%</span>
+                            </div>
+                            <div class="h-2.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full bg-brand-blue transition-all duration-1000 w-0" data-target="75%"></div>
+                            </div>
+                        </div>
+                        <!-- Skill 4 -->
+                        <div class="space-y-1.5 hover:scale-[1.01] transition-transform duration-200">
+                            <div class="flex justify-between text-xs sm:text-sm font-medium">
+                                <span class="text-slate-700 dark:text-slate-300">AutoCAD</span>
+                                <span class="text-slate-400">55%</span>
+                            </div>
+                            <div class="h-2.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full bg-brand-blue transition-all duration-1000 w-0" data-target="55%"></div>
+                            </div>
+                        </div>
+                        <!-- Skill 5 -->
+                        <div class="space-y-1.5 hover:scale-[1.01] transition-transform duration-200">
+                            <div class="flex justify-between text-xs sm:text-sm font-medium">
+                                <span class="text-slate-700 dark:text-slate-300">Figma</span>
+                                <span class="text-slate-400">50%</span>
+                            </div>
+                            <div class="h-2.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full bg-brand-blue transition-all duration-1000 w-0" data-target="50%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: CONTACT SECTION -->
+    <section id="contact" class="py-24 bg-white dark:bg-slate-900 px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            <!-- Left Info Panel -->
+            <div class="lg:col-span-5 space-y-6">
+                <!-- Diubah dari "Hubungi Kami" menjadi "Hubungi Saya" sesuai request -->
+                <span class="px-3 py-1 bg-blue-50 dark:bg-blue-950/40 text-brand-blue border border-blue-100 dark:border-blue-900/50 rounded-full text-xs font-semibold">Hubungi Saya</span>
+                <h2 class="text-4xl font-bold text-slate-900 dark:text-white">Mari Mulai <span class="text-brand-blue serif-italic font-normal">Kolaborasi</span></h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base leading-relaxed text-justify">
+                    Terbuka untuk kolaborasi akademis, pengerjaan proyek mahasiswa, forum pertukaran ide teknologi pengolahan limbah, ataupun peluang kerja sama organisasi. Hubungi saya langsung melalui salah satu platform berikut:
+                </p>
+                
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-center gap-4 hover:translate-x-1 transform transition-all duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200/50 dark:border-slate-800/50 flex items-center justify-center text-slate-700 dark:text-slate-300 shadow-sm"><i class="far fa-envelope text-lg"></i></div>
+                        <div>
+                            <p class="text-[11px] text-slate-400">Email Utama</p>
+                            <a href="mailto:hafizhanardan@student.ppns.ac.id" class="text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-brand-blue transition-colors">hafizhanardan@student.ppns.ac.id</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 hover:translate-x-1 transform transition-all duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200/50 dark:border-slate-800/50 flex items-center justify-center text-slate-700 dark:text-slate-300 shadow-sm"><i class="fas fa-map-marker-alt text-lg"></i></div>
+                        <div>
+                            <p class="text-[11px] text-slate-400">Domisili</p>
+                            <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">Nganjuk, Jawa Timur</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 hover:translate-x-1 transform transition-all duration-200">
+                        <div class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200/50 dark:border-slate-800/50 flex items-center justify-center text-slate-700 dark:text-slate-300 shadow-sm"><i class="fas fa-university text-lg"></i></div>
+                        <div>
+                            <p class="text-[11px] text-slate-400">Kampus</p>
+                            <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">Politeknik Perkapalan Negeri Surabaya</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Badges -->
+                <div class="flex items-center gap-3 pt-4">
+                    <a href="https://www.instagram.com/hafizhardnn?igsh=MXU5ZndpMWtzc3BpOA==" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-pink-600 hover:text-white dark:hover:bg-pink-600 hover:scale-110 transform transition-all shadow-sm"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hafizhan-rizqu-a-a71057379?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-blue transition-colors text-lg"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://wa.me/qr/5KKGOBX3XGZXM1" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-blue transition-colors text-lg"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- Right Box Form -->
+            <div class="lg:col-span-7 w-full">
+                <div class="bg-white dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl p-8 shadow-xl space-y-6">
+                    <div class="space-y-1">
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Kirim Pesan Langsung</h3>
+                        <p class="text-xs text-slate-400">Pesan akan otomatis dimuat rapi ke dalam akun Gmail Anda untuk dikirimkan kepada saya.</p>
+                    </div>
+                    
+                    <form id="gmail-direct-form" class="space-y-4">
+                        <div class="space-y-2">
+                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400">Nama Lengkap Anda</label>
+                            <input type="text" id="form-name" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-brand-blue dark:focus:border-brand-blue transition-all" placeholder="Masukkan nama lengkap Anda..." required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400">Email atau No. WhatsApp Anda</label>
+                            <input type="text" id="form-contact-back" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-brand-blue dark:focus:border-brand-blue transition-all" placeholder="Masukkan email / no. HP Anda untuk dibalas..." required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400">Subjek Pesan</label>
+                            <input type="text" id="form-subject" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-brand-blue dark:focus:border-brand-blue transition-all" placeholder="Topik pembahasan..." required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-semibold text-slate-500 dark:text-slate-400">Pesan Kolaborasi</label>
+                            <textarea rows="4" id="form-message" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-brand-blue dark:focus:border-brand-blue transition-all resize-none" placeholder="Tuliskan isi pesan, tawaran kolaborasi, atau tugas bersama di sini..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full py-4 bg-brand-blue hover:bg-brand-blue/95 hover:shadow-lg hover:shadow-blue-500/20 text-white font-bold rounded-xl text-sm transition-all flex items-center justify-center gap-2 active:scale-[0.99]">
+                            <i class="far fa-paper-plane"></i> Buka Email Gmail & Kirim
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-slate-950 border-t border-slate-200/50 dark:border-slate-800/50 py-12 px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <!-- Custom Brand Emblem -->
+            <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-brand-blue flex items-center justify-center text-white font-extrabold text-sm shadow-sm">H</span>
+                <div class="text-sm font-semibold tracking-tight text-slate-800 dark:text-slate-200">
+                    hafizhan<span class="text-brand-blue">.side</span>
+                </div>
+            </div>
+            <!-- Custom Bespoke Typography Copyright -->
+            <div class="text-xs text-slate-500 dark:text-slate-400 text-center font-medium font-mono">
+                Handcrafted by Hafizhan &middot; Surabaya, Indonesia &middot; <span id="current-year"></span>
+            </div>
+            <!-- Connected Social Links -->
+            <div class="flex items-center gap-4">
+                <a href="https://www.instagram.com/hafizhardnn?igsh=MXU5ZndpMWtzc3BpOA==" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-blue transition-colors text-lg"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/hafizhan-rizqu-a-a71057379?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-blue transition-colors text-lg"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/qr/5KKGOBX3XGZXM1" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-blue transition-colors text-lg"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE FLOATING ACTION BUTTON (BACK TO TOP) -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-brand-blue hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow-2xl transition-all opacity-0 pointer-events-none scale-75 z-40" title="Kembali ke atas">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- INTERACTIVE DETAIL MODAL WITH IMAGE PREVIEW -->
+    <div id="detail-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm transition-all duration-300">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl overflow-hidden max-w-lg w-full shadow-2xl border border-slate-200 dark:border-slate-800 scale-95 transition-all duration-300 relative">
+            <button id="close-modal" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-black/40 text-white hover:bg-black/60 flex items-center justify-center text-sm transition-all"><i class="fas fa-times"></i></button>
+            
+            <!-- Modal Image Slot -->
+            <div class="h-56 bg-slate-200 relative overflow-hidden">
+                <img id="modal-image" src="" alt="Detail Kegiatan" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/30 to-transparent"></div>
+                <div class="absolute bottom-4 left-6 right-6">
+                    <span id="modal-type" class="px-2.5 py-0.5 bg-blue-500 text-white rounded-md text-[10px] font-bold uppercase tracking-wider">Tipe</span>
+                    <h3 id="modal-title" class="text-xl md:text-2xl font-bold text-white mt-1">Judul Kegiatan</h3>
+                </div>
+            </div>
+            
+            <!-- Modal Body Text -->
+            <div class="p-6 md:p-8 space-y-4">
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Deskripsi Lengkap</h4>
+                <p id="modal-desc" class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-justify">Isi deskripsi detail...</p>
+                <div class="pt-4 flex justify-end">
+                    <button id="btn-modal-ok" class="px-6 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-blue hover:text-white dark:hover:bg-brand-blue text-slate-700 dark:text-slate-200 rounded-xl text-xs font-bold transition-all">Selesai Membaca</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hubungkan ke File JS Eksternal -->
+    <script src="script.js" defer></script>
+</body>
+</html>

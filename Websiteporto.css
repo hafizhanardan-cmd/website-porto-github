@@ -1,0 +1,54 @@
+/* --- CUSTOM UTILITY STYLES --- */
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.serif-italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2563eb;
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1d4ed8;
+}
+
+/* Smooth Custom Animations */
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom hover glow */
+.glow-hover {
+    transition: all 0.3s ease;
+}
+
+.glow-hover:hover {
+    box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.4);
+    transform: translateY(-4px);
+}
